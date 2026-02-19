@@ -2,27 +2,14 @@
 
 ## Quick Start
 
-### 1. Create the Next.js project
+### 1. Clone and install
 ```bash
-npx create-next-app@latest vanslist --typescript --tailwind --eslint --app --src-dir --no-import-alias
-```
-
-### 2. Copy these files into your project
-Drop the `src/` folder contents, `supabase/` folder, and `.env.local.example` into your new project, replacing defaults.
-
-### 3. Install Supabase client
-```bash
+git clone https://github.com/vanxan/vanslist.git
 cd vanslist
-npm install @supabase/supabase-js
+npm install
 ```
 
-### 4. Set up Supabase
-1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to **SQL Editor** and run `supabase/001_schema.sql`
-3. Then run `supabase/002_seed_data.sql`
-4. Copy `.env.local.example` to `.env.local` and fill in your Supabase URL and anon key (found in Settings → API)
-
-### 5. Run it
+### 2. Run it
 ```bash
 npm run dev
 ```
@@ -34,38 +21,40 @@ Visit `http://localhost:3000` → click Plumber → see your listings.
 ```
 src/
   app/
-    page.tsx                          # Homepage — trade grid
+    page.tsx                          # Homepage — trade grid + featured listings
     layout.tsx                        # Global layout, nav, footer
     globals.css                       # Tailwind imports
+    ai-for-plumbers/
+      page.tsx                        # Trade page with filters
+      [slug]/page.tsx                 # Individual listing detail
+    apps/page.tsx                     # AI apps directory
+    browse/page.tsx                   # Browse trades by category
+    leaderboard/page.tsx              # Top-voted listings
     submit/page.tsx                   # Builder submission form
-    api/submit/route.ts               # Form handler
-    trade/
-      [slug]/page.tsx                 # Trade page with filters
-      [slug]/[listingSlug]/page.tsx   # Individual listing detail
+    get-verified/page.tsx             # Verification flow
+    sitemap.ts                        # Auto-generated sitemap
+    robots.ts                         # Robots.txt config
   components/
     ListingCard.tsx                   # Card component for grid
-    TradeFilters.tsx                  # Filter pills (client component)
+    TradeCard.tsx                     # Trade category card
+    RotatingHero.tsx                  # Animated hero text
+    DynIcon.tsx                       # Dynamic Phosphor icon loader
+  data/
+    listings.ts                      # All listing data
+    trades.ts                        # Trade categories + tags
+    ai-apps.ts                       # AI apps directory data
+    verification.ts                  # Verification check labels
   lib/
-    supabase.ts                      # Client + types
-    queries.ts                       # Data fetching functions
-supabase/
-  001_schema.sql                     # Database tables
-  002_seed_data.sql                  # Seed data (tasks, types, plumber listings)
+    jsonld.ts                        # JSON-LD structured data helpers
 ```
 
 ## Adding New Trades
 
-1. Insert a new row into the `trades` table
-2. Create listings referencing that trade
-3. The trade auto-appears on the homepage when `is_active = true`
+Add a new entry to the `TRADES` array in `src/data/trades.ts`. It will auto-appear on the homepage and browse page.
 
 ## Adding New Listings
 
-Insert into the `listings` table with:
-- `trade_id` → which trade
-- `task_id` → which task category
-- `content_type_id` → prompt, app, workflow, etc.
-- `status: 'published'` → makes it live
+Add a new entry to the `LISTINGS` array in `src/data/listings.ts` with the appropriate trade, type, and tags.
 
 ## Content Types
 
