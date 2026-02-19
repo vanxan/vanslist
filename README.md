@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VansList — AI Tools for Every Trade
 
-## Getting Started
+## Quick Start
 
-First, run the development server:
-
+### 1. Create the Next.js project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest vanslist --typescript --tailwind --eslint --app --src-dir --no-import-alias
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Copy these files into your project
+Drop the `src/` folder contents, `supabase/` folder, and `.env.local.example` into your new project, replacing defaults.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Install Supabase client
+```bash
+cd vanslist
+npm install @supabase/supabase-js
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Set up Supabase
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Go to **SQL Editor** and run `supabase/001_schema.sql`
+3. Then run `supabase/002_seed_data.sql`
+4. Copy `.env.local.example` to `.env.local` and fill in your Supabase URL and anon key (found in Settings → API)
 
-## Learn More
+### 5. Run it
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Visit `http://localhost:3000` → click Plumber → see your listings.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+  app/
+    page.tsx                          # Homepage — trade grid
+    layout.tsx                        # Global layout, nav, footer
+    globals.css                       # Tailwind imports
+    submit/page.tsx                   # Builder submission form
+    api/submit/route.ts               # Form handler
+    trade/
+      [slug]/page.tsx                 # Trade page with filters
+      [slug]/[listingSlug]/page.tsx   # Individual listing detail
+  components/
+    ListingCard.tsx                   # Card component for grid
+    TradeFilters.tsx                  # Filter pills (client component)
+  lib/
+    supabase.ts                      # Client + types
+    queries.ts                       # Data fetching functions
+supabase/
+  001_schema.sql                     # Database tables
+  002_seed_data.sql                  # Seed data (tasks, types, plumber listings)
+```
 
-## Deploy on Vercel
+## Adding New Trades
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Insert a new row into the `trades` table
+2. Create listings referencing that trade
+3. The trade auto-appears on the homepage when `is_active = true`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Adding New Listings
+
+Insert into the `listings` table with:
+- `trade_id` → which trade
+- `task_id` → which task category
+- `content_type_id` → prompt, app, workflow, etc.
+- `status: 'published'` → makes it live
+
+## Content Types
+
+| Type | What it is | Key fields |
+|------|-----------|------------|
+| Prompt | Copy-paste AI prompt | `prompt_text`, `llm_compatibility` |
+| App | SaaS tool review | `pros`, `cons`, `the_catch`, `external_url` |
+| Workflow | Multi-step process | `steps` (JSON array) |
+| Automation | Set-and-forget | `steps` (JSON array) |
+| Template | Ready-made asset | `description`, `external_url` |
+| Skill | How-to tutorial | `description`, `steps` |
+| Stack | Tool bundle | `is_stack`, `stack_total_monthly` |
