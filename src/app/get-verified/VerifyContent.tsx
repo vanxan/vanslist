@@ -35,7 +35,7 @@ export function VerifyContent() {
 
   if (phase === 'verifying') {
     return (
-      <div className="max-w-[680px] mx-auto px-6 pt-12 pb-20">
+      <div className="max-w-[680px] mx-auto px-4 sm:px-6 pt-12 pb-20">
         {/* Status */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-[#1a1a1a] flex items-center justify-center mx-auto mb-5">
@@ -45,7 +45,7 @@ export function VerifyContent() {
               <Spinner size={32} className="text-gold animate-spin-slow" />
             )}
           </div>
-          <h1 className="text-[28px] font-extrabold mb-2">
+          <h1 className="text-2xl sm:text-[28px] font-extrabold mb-2">
             {allDone ? (score >= 80 ? 'Verified!' : 'Needs Attention') : 'Running verification...'}
           </h1>
           {!allDone && (
@@ -111,12 +111,12 @@ export function VerifyContent() {
   }
 
   return (
-    <div className="max-w-[680px] mx-auto px-6 pt-12 pb-20">
+    <div className="max-w-[680px] mx-auto px-4 sm:px-6 pt-12 pb-20">
       <div className="text-center mb-10">
         <div className="w-16 h-16 rounded-2xl bg-[#1a1a1a] flex items-center justify-center mx-auto mb-5">
           <SealCheck size={32} weight="fill" className="text-gold" />
         </div>
-        <h1 className="text-[36px] font-extrabold tracking-tight mb-2">Get Verified</h1>
+        <h1 className="text-2xl sm:text-[36px] font-extrabold tracking-tight mb-2">Get Verified</h1>
         <p className="text-[15px] text-gray-400 max-w-[460px] mx-auto leading-relaxed">
           Submit your app or tool. We automatically check against <strong className="text-[#1a1a1a]">{VERIFICATION_CHECKS.length} quality markers</strong> and add the verified badge to your listing.
         </p>
@@ -125,7 +125,7 @@ export function VerifyContent() {
 
       {/* Form */}
       <div className="space-y-0">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="mb-6">
             <label className="block text-xs font-semibold text-gray-500 mb-1.5">Company Name *</label>
             <input className="w-full py-3 px-4 border border-gray-200 rounded-lg text-sm outline-none bg-white" placeholder="e.g. Jobber" />
@@ -135,7 +135,7 @@ export function VerifyContent() {
             <input className="w-full py-3 px-4 border border-gray-200 rounded-lg text-sm outline-none bg-white" placeholder="https://yourapp.com" />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="mb-6">
             <label className="block text-xs font-semibold text-gray-500 mb-1.5">Contact Email *</label>
             <input className="w-full py-3 px-4 border border-gray-200 rounded-lg text-sm outline-none bg-white" placeholder="you@company.com" />
@@ -153,7 +153,7 @@ export function VerifyContent() {
             </select>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="mb-6">
             <label className="block text-xs font-semibold text-gray-500 mb-1.5">Target Trade *</label>
             <select className="w-full py-3 px-4 border border-gray-200 rounded-lg text-sm outline-none bg-white text-gray-400">
@@ -175,7 +175,7 @@ export function VerifyContent() {
           <label className="block text-xs font-semibold text-gray-500 mb-1.5">Full Description</label>
           <textarea rows={4} className="w-full py-3 px-4 border border-gray-200 rounded-lg text-sm outline-none bg-white resize-y" placeholder="Detailed description of your product..." />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="mb-6">
             <label className="block text-xs font-semibold text-gray-500 mb-1.5">GitHub Repo URL</label>
             <input className="w-full py-3 px-4 border border-gray-200 rounded-lg text-sm outline-none bg-white" placeholder="Optional" />

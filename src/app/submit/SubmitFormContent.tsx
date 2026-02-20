@@ -67,11 +67,11 @@ export function SubmitFormContent() {
 
   if (submitted) {
     return (
-      <div className="max-w-[680px] mx-auto px-6 py-16 text-center">
+      <div className="max-w-[680px] mx-auto px-4 sm:px-6 py-16 text-center">
         <div className="w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center mx-auto mb-5">
           <Check size={32} weight="bold" className="text-white" />
         </div>
-        <h1 className="text-[32px] font-extrabold mb-2">You&apos;re live!</h1>
+        <h1 className="text-2xl sm:text-[32px] font-extrabold mb-2">You&apos;re live!</h1>
         <p className="text-[15px] text-gray-400 max-w-[400px] mx-auto mb-6 leading-relaxed">
           Your {submitType?.toLowerCase()} has been submitted and is now visible on VansList.
         </p>
@@ -89,13 +89,13 @@ export function SubmitFormContent() {
   }
 
   return (
-    <div className="max-w-[680px] mx-auto px-6 pt-12 pb-20">
+    <div className="max-w-[680px] mx-auto px-4 sm:px-6 pt-12 pb-20">
       {/* Header */}
       <div className="text-center mb-10">
         <div className="w-16 h-16 rounded-2xl bg-[#1a1a1a] flex items-center justify-center mx-auto mb-5">
           <PaperPlaneTilt size={32} className="text-gold" />
         </div>
-        <h1 className="text-[36px] font-extrabold tracking-tight mb-2">Submit to VansList</h1>
+        <h1 className="text-2xl sm:text-[36px] font-extrabold tracking-tight mb-2">Submit to VansList</h1>
         <p className="text-[15px] text-gray-400 max-w-[460px] mx-auto leading-relaxed">
           Share an AI tool, prompt, workflow, bundle, or service with the community. Free to submit — goes live instantly.
         </p>
@@ -105,7 +105,7 @@ export function SubmitFormContent() {
       {!submitType ? (
         <>
           <h3 className="text-sm font-bold text-[#1a1a1a] mb-4">What are you submitting?</h3>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {SUBMIT_TYPES.map(t => (
               <button key={t.type} onClick={() => setSubmitType(t.type)}
                 className="bg-white border border-gray-200 rounded-xl p-5 flex items-center gap-3.5 text-left hover:border-gold hover:shadow-[0_2px_12px_rgba(212,168,83,0.12)] transition-all">
@@ -144,7 +144,7 @@ export function SubmitFormContent() {
             `e.g. My ${submitType}`
           } />
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Searchable trade */}
             <div className="mb-6 relative">
               <label className="block text-xs font-semibold text-gray-500 mb-1.5">Trade *</label>
@@ -244,7 +244,7 @@ export function SubmitFormContent() {
           {submitType === 'App' && (
             <>
               <Input label="Website URL" required placeholder="https://yourapp.com" />
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input label="Pricing" required placeholder="e.g. Free, $39/mo, Custom" />
                 <Select label="Free trial?"><option>Yes</option><option>No</option></Select>
               </div>
@@ -290,7 +290,7 @@ export function SubmitFormContent() {
           {submitType === 'Workflow' && (
             <>
               <TextArea label="Steps Overview" required placeholder="Describe the steps in this workflow..." />
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input label="Tools Required" required placeholder="e.g. Zapier, Google Sheets, Jobber" />
                 <Select label="Difficulty" required><option>Easy</option><option>Medium</option><option>Advanced</option></Select>
               </div>
@@ -301,7 +301,7 @@ export function SubmitFormContent() {
           {submitType === 'Bundle' && (
             <>
               <TextArea label="Tools in this bundle" required placeholder="List each tool, one per line" rows={3} />
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input label="Total Estimated Cost" placeholder="e.g. ~$154/mo" />
                 <Input label="Best for" placeholder="e.g. Solo plumbers, small teams" />
               </div>
@@ -311,7 +311,7 @@ export function SubmitFormContent() {
 
           {submitType === 'Service' && (
             <>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Select label="Service Type" required>
                   <option>Select type</option><option>AI Setup</option><option>Consulting</option><option>Training</option><option>Custom Build</option><option>Other</option>
                 </Select>
@@ -319,7 +319,7 @@ export function SubmitFormContent() {
                   <option>Select model</option><option>Hourly</option><option>Flat rate</option><option>Custom / Contact</option>
                 </Select>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Input label="Website / Booking URL" required placeholder="https://yoursite.com" />
                 <Input label="Experience / Credentials" placeholder="e.g. 5 years, certified, 100+ setups" />
               </div>
@@ -329,7 +329,7 @@ export function SubmitFormContent() {
           {/* Your info */}
           <div className="border-t border-gray-100 pt-6 mt-2 mb-6">
             <div className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Your info</div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input label="Your Name" placeholder="Optional" />
               <Input label="Email" placeholder="Optional — for updates on your listing" />
             </div>

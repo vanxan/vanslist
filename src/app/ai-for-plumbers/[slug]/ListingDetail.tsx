@@ -28,37 +28,37 @@ export function ListingDetail({ listing }: { listing: Listing }) {
     <div>
       {/* Header band — includes breadcrumb, title row, tags, description, Try Now, and tabs */}
       <div className="bg-[#fafaf8] border-b border-gray-100">
-        <div className="max-w-container mx-auto px-6">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-1.5 text-xs text-gray-400 pt-5">
-            <Link href="/" className="hover:text-gray-600 flex items-center gap-1">
+          <div className="flex items-center gap-1.5 text-xs text-gray-400 pt-5 overflow-x-auto">
+            <Link href="/" className="hover:text-gray-600 flex items-center gap-1 whitespace-nowrap">
               <DynIcon name="House" size={12} color="#999" /> Home
             </Link>
-            <CaretRight size={10} />
-            <Link href="/ai-for-plumbers" className="hover:text-gray-600 flex items-center gap-1">
-              <DynIcon name="Wrench" size={12} color="#999" /> AI for Plumbers
+            <CaretRight size={10} className="shrink-0" />
+            <Link href="/ai-for-plumbers" className="hover:text-gray-600 flex items-center gap-1 whitespace-nowrap">
+              <DynIcon name="Wrench" size={12} color="#999" /> <span className="hidden sm:inline">AI for Plumbers</span><span className="sm:hidden">Plumbers</span>
             </Link>
-            <CaretRight size={10} />
-            <Link href="/ai-for-plumbers" className="hover:text-gray-600">Apps</Link>
-            <CaretRight size={10} />
-            <span className="text-[#1a1a1a] font-semibold">{listing.title}</span>
+            <CaretRight size={10} className="shrink-0" />
+            <Link href="/ai-for-plumbers" className="hover:text-gray-600 whitespace-nowrap">Apps</Link>
+            <CaretRight size={10} className="shrink-0" />
+            <span className="text-[#1a1a1a] font-semibold truncate">{listing.title}</span>
           </div>
 
           {/* Icon + title + votes + verified */}
-          <div className="flex items-center gap-5 pt-14 pb-4">
-            <div className="w-20 h-20 rounded-2xl bg-gold-light border border-gray-200 flex items-center justify-center shrink-0">
-              <DynIcon name={listing.typeIcon} size={36} color="#8b7355" />
+          <div className="flex items-start sm:items-center gap-3 sm:gap-5 pt-8 sm:pt-14 pb-4">
+            <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-gold-light border border-gray-200 flex items-center justify-center shrink-0">
+              <DynIcon name={listing.typeIcon} size={28} color="#8b7355" />
             </div>
-            <div>
-              <h1 className="text-[44px] font-bold tracking-tight text-[#1a1a1a]">{listing.title}</h1>
-              <div className="flex items-center gap-2 -mt-1">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl lg:text-[44px] font-bold tracking-tight text-[#1a1a1a] leading-tight">{listing.title}</h1>
+              <div className="flex items-center gap-2 mt-1 sm:-mt-1 flex-wrap">
                 <span className="text-[13px] text-gray-500">by <strong className="text-[#1a1a1a]">getjobber</strong></span>
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-gray-300 hidden sm:inline">&bull;</span>
                 <div className="inline-flex items-center gap-1 border border-gold-border rounded-full px-2.5 py-0.5 bg-white">
                   <Star size={13} weight="fill" className="text-gold" />
                   <span className="text-xs font-bold text-gold">{votes.toLocaleString()}</span>
                 </div>
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-gray-300 hidden sm:inline">&bull;</span>
                 {listing.verified && (
                   <div className="relative group">
                     <div className="inline-flex items-center gap-1 border border-emerald-200 rounded-full px-2.5 py-0.5 bg-emerald-50 cursor-default">
@@ -77,8 +77,8 @@ export function ListingDetail({ listing }: { listing: Listing }) {
           </div>
 
           {/* Tags + description + Try Now */}
-          <div className="flex gap-6 mt-2.5">
-            <div className="flex-[0_0_80%]">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2.5">
+            <div className="flex-1">
               <div className="flex gap-1.5 mb-3 flex-wrap">
                 {(listing.tags || [listing.type, listing.task, listing.difficulty]).map(t => (
                   <span key={t} className="bg-white border border-gray-200 rounded-full px-3 py-0.5 text-[11px] text-gray-500 font-medium">{t}</span>
@@ -86,9 +86,9 @@ export function ListingDetail({ listing }: { listing: Listing }) {
               </div>
               <p className="text-[15px] text-gray-400 leading-relaxed max-w-[700px]">{listing.summary}</p>
             </div>
-            <div className="flex-[0_0_20%] flex justify-end items-start pt-1">
+            <div className="flex sm:justify-end items-start pt-1 shrink-0">
               {listing.url && (
-                <a href={listing.url} target="_blank" rel="noopener" className="bg-gold text-white text-sm font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:brightness-110 transition-all">
+                <a href={listing.url} target="_blank" rel="noopener" className="bg-gold text-white text-sm font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:brightness-110 transition-all w-full sm:w-auto justify-center">
                   Try Now <ArrowSquareOut size={16} />
                 </a>
               )}
@@ -96,9 +96,9 @@ export function ListingDetail({ listing }: { listing: Listing }) {
           </div>
 
           {/* Tab bar — inside header band */}
-          <div className="flex gap-6 mt-8">
+          <div className="flex gap-4 sm:gap-6 mt-8 overflow-x-auto">
             {tabs.map(t => (
-              <button key={t.id} onClick={() => setTab(t.id as any)} className={`pb-3 text-sm font-semibold transition-colors ${
+              <button key={t.id} onClick={() => setTab(t.id as any)} className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap ${
                 tab === t.id ? 'text-[#1a1a1a] border-b-2 border-gold' : 'text-gray-400 hover:text-gray-600'
               }`}>
                 {t.label}
@@ -109,8 +109,8 @@ export function ListingDetail({ listing }: { listing: Listing }) {
       </div>
 
       {/* Body: content + sidebar */}
-      <div className="max-w-container mx-auto px-6 py-10">
-        <div className="flex gap-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 py-8 sm:py-10">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
           {/* Main content */}
           <div className="flex-1 min-w-0">
             {/* About tab */}
@@ -143,7 +143,7 @@ export function ListingDetail({ listing }: { listing: Listing }) {
 
             {/* Pros & Cons tab */}
             {tab === 'pros' && (
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-bold mb-4 text-emerald-600">Pros</h3>
                   {(listing.pros || ['Easy to use', 'Good value for money', 'Saves significant time weekly']).map((p, i) => (
@@ -188,7 +188,7 @@ export function ListingDetail({ listing }: { listing: Listing }) {
                     { q: `How long does it take to set up?`, a: `Most users are up and running within a day. The onboarding process is straightforward and they offer support if you get stuck.` },
                     { q: `Can I try it before I buy?`, a: listing.cost ? `Yes, most plans include a free trial period so you can test it with your actual workflow before committing.` : `This is free to use — no commitment required.` },
                   ].map((item, i) => (
-                    <div key={i} className="border border-gray-200 rounded-xl p-5">
+                    <div key={i} className="border border-gray-200 rounded-xl p-4 sm:p-5">
                       <h4 className="text-sm font-bold text-[#1a1a1a] mb-2">{item.q}</h4>
                       <p className="text-sm text-gray-500 leading-relaxed">{item.a}</p>
                     </div>
@@ -199,19 +199,21 @@ export function ListingDetail({ listing }: { listing: Listing }) {
           </div>
 
           {/* Sidebar */}
-          <div className="w-[280px] shrink-0">
-            <div className="sticky top-24 space-y-4">
+          <div className="w-full lg:w-[280px] shrink-0">
+            <div className="lg:sticky lg:top-24 space-y-4">
               {/* Action buttons */}
-              <button className="w-full bg-white border border-gray-200 rounded-xl py-3 text-sm font-semibold text-gray-500 flex items-center justify-center gap-2 hover:border-gray-300 transition-colors">
-                <ShareNetwork size={16} /> Share
-              </button>
-              <a href={listing.url || '#'} target="_blank" rel="noopener"
-                className="w-full bg-white border border-gray-200 rounded-xl py-3 text-sm font-semibold text-gray-500 flex items-center justify-center gap-2 hover:border-gray-300 transition-colors">
-                <Globe size={16} /> Visit Website
-              </a>
-              <button className="w-full bg-white border border-gray-200 rounded-xl py-3 text-sm font-semibold text-gray-500 flex items-center justify-center gap-2 hover:border-gray-300 transition-colors">
-                <WarningCircle size={16} /> Report Issue
-              </button>
+              <div className="grid grid-cols-3 lg:grid-cols-1 gap-3 lg:gap-4">
+                <button className="bg-white border border-gray-200 rounded-xl py-3 text-sm font-semibold text-gray-500 flex items-center justify-center gap-2 hover:border-gray-300 transition-colors">
+                  <ShareNetwork size={16} /> Share
+                </button>
+                <a href={listing.url || '#'} target="_blank" rel="noopener"
+                  className="bg-white border border-gray-200 rounded-xl py-3 text-sm font-semibold text-gray-500 flex items-center justify-center gap-2 hover:border-gray-300 transition-colors">
+                  <Globe size={16} /> <span className="hidden sm:inline">Visit Website</span><span className="sm:hidden">Website</span>
+                </a>
+                <button className="bg-white border border-gray-200 rounded-xl py-3 text-sm font-semibold text-gray-500 flex items-center justify-center gap-2 hover:border-gray-300 transition-colors">
+                  <WarningCircle size={16} /> Report
+                </button>
+              </div>
 
               {/* Ad space */}
               <div className="bg-gray-100 rounded-xl h-[200px] flex items-center justify-center">

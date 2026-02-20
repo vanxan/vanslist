@@ -24,8 +24,8 @@ export function TradePageContent({ listings }: { listings: Listing[] }) {
   return (
     <div>
       {/* Hero */}
-      <div className="text-center pt-12 px-6">
-        <h1 className="text-[44px] font-extrabold mb-3 tracking-tight">
+      <div className="text-center pt-12 px-4 sm:px-6">
+        <h1 className="text-3xl sm:text-[44px] font-extrabold mb-3 tracking-tight">
           AI for <span className="underline decoration-gold decoration-[3px] underline-offset-[6px]">Plumbers</span>
         </h1>
         <p className="text-[15px] text-gray-400 max-w-[550px] mx-auto leading-relaxed mb-1">
@@ -45,9 +45,9 @@ export function TradePageContent({ listings }: { listings: Listing[] }) {
         </div>
 
         {/* Type filters */}
-        <div className="flex gap-2 justify-center flex-wrap mb-12">
+        <div className="flex gap-2 justify-center flex-wrap mb-12 overflow-x-auto pb-1">
           {CONTENT_TYPES.map(c => (
-            <button key={c.label} onClick={() => setActiveType(c.label)} className={`rounded-full px-4 py-1.5 text-xs font-semibold border transition-colors flex items-center gap-1.5 ${
+            <button key={c.label} onClick={() => setActiveType(c.label)} className={`rounded-full px-3 sm:px-4 py-1.5 text-xs font-semibold border transition-colors flex items-center gap-1.5 whitespace-nowrap ${
               activeType === c.label ? 'bg-[#1a1a1a] text-white border-[#1a1a1a]' : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'
             }`}>
               <DynIcon name={c.icon} size={13} color={activeType === c.label ? '#fff' : '#999'} />
@@ -58,8 +58,8 @@ export function TradePageContent({ listings }: { listings: Listing[] }) {
       </div>
 
       {/* Grid */}
-      <div className="max-w-container mx-auto px-6 pb-20">
-        <div className="grid grid-cols-3 gap-3.5">
+      <div className="max-w-container mx-auto px-4 sm:px-6 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
           {filtered.map((item, i) => <ListingCard key={i} listing={item} />)}
         </div>
         {filtered.length === 0 && (

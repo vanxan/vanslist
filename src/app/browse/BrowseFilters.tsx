@@ -23,7 +23,7 @@ export function BrowseFilters({ trades, categories }: { trades: Trade[]; categor
 
   return (
     <>
-      <div className="text-center px-6">
+      <div className="text-center px-4 sm:px-6">
         <div className="max-w-lg mx-auto mb-6 relative">
           <MagnifyingGlass size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" />
           <input
@@ -43,14 +43,14 @@ export function BrowseFilters({ trades, categories }: { trades: Trade[]; categor
           ))}
         </div>
       </div>
-      <div className="max-w-container mx-auto px-6 pb-20">
+      <div className="max-w-container mx-auto px-4 sm:px-6 pb-20">
         {Object.entries(grouped).map(([category, items]) => (
           <div key={category} className="mb-12">
             <h2 className="text-lg font-bold text-[#1a1a1a] mb-4 flex items-center gap-2">
               {category}
               <span className="text-[11px] text-gray-400 font-medium">({items.length})</span>
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
               {items.map(t => <TradeCard key={t.slug} trade={t} />)}
             </div>
           </div>

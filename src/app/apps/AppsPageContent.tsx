@@ -17,8 +17,8 @@ export function AppsPageContent({ apps, categories }: { apps: AIApp[]; categorie
 
   return (
     <div>
-      <div className="text-center pt-12 px-6">
-        <h1 className="text-[44px] font-extrabold mb-3 tracking-tight">
+      <div className="text-center pt-12 px-4 sm:px-6">
+        <h1 className="text-3xl sm:text-[44px] font-extrabold mb-3 tracking-tight">
           AI <span className="underline decoration-gold decoration-[3px] underline-offset-[6px]">Apps</span>
         </h1>
         <p className="text-[15px] text-gray-400 max-w-[550px] mx-auto leading-relaxed">
@@ -49,8 +49,8 @@ export function AppsPageContent({ apps, categories }: { apps: AIApp[]; categorie
         </div>
       </div>
 
-      <div className="max-w-container mx-auto px-6 pb-20">
-        <div className="grid grid-cols-3 gap-3.5">
+      <div className="max-w-container mx-auto px-4 sm:px-6 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
           {filtered.map((app, i) => (
             <div key={i} className="bg-white border border-gray-200 rounded-xl p-5 hover:border-gold hover:shadow-[0_2px_12px_rgba(212,168,83,0.12)] transition-all relative">
               {app.featured && (

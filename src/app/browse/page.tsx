@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 export default function BrowsePage() {
   return (
     <div>
-      <div className="text-center pt-12 px-6">
-        <h1 className="text-[44px] font-extrabold mb-3 tracking-tight">
+      <div className="text-center pt-12 px-4 sm:px-6">
+        <h1 className="text-3xl sm:text-[44px] font-extrabold mb-3 tracking-tight">
           Browse <span className="underline decoration-gold decoration-[3px] underline-offset-[6px]">All Trades</span>
         </h1>
         <p className="text-[15px] text-gray-400 max-w-[550px] mx-auto leading-relaxed">

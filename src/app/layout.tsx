@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, DM_Mono } from 'next/font/google';
 import Link from 'next/link';
 import { SquaresFour, RocketLaunch, Trophy, PaperPlaneTilt, SealCheck } from '@phosphor-icons/react/dist/ssr';
+import { MobileNav } from '@/components/MobileNav';
 import './globals.css';
 
 const inter = Inter({
@@ -46,12 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${dmMono.variable}`}>
       <body className="bg-page text-gray-900 antialiased font-[family-name:var(--font-inter)]">
-        <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
-          <div className="mx-auto max-w-container px-6 py-4 flex items-center justify-between">
+        <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm relative">
+          <div className="mx-auto max-w-container px-4 sm:px-6 py-4 flex items-center justify-between">
             <Link href="/" className="text-lg font-extrabold tracking-tight">
               Vans<span className="text-gold">List</span>
             </Link>
-            <div className="flex gap-6 text-[13px] text-gray-500 font-medium">
+            <div className="hidden lg:flex gap-6 text-[13px] text-gray-500 font-medium">
               <Link href="/browse" className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
                 <SquaresFour size={15} /> Browse
               </Link>
@@ -62,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Trophy size={15} /> Leaderboard
               </Link>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <Link href="/submit" className="text-[13px] text-gray-500 flex items-center gap-1.5 hover:text-gray-900 transition-colors">
                 <PaperPlaneTilt size={15} /> Submit
               </Link>
@@ -70,10 +71,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <SealCheck size={14} className="text-gold" /> Get Verified
               </Link>
             </div>
+            <MobileNav />
           </div>
         </nav>
         <main>{children}</main>
-        <footer className="border-t border-gray-100 bg-white py-8 text-center">
+        <footer className="border-t border-gray-100 bg-white py-8 text-center px-4">
           <div className="text-base font-extrabold mb-1.5">
             Vans<span className="text-gold">List</span>
           </div>

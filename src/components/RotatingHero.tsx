@@ -20,11 +20,11 @@ export function RotatingHero() {
   }, []);
 
   return (
-    <h1 className="text-[62px] font-extrabold leading-[1.15] tracking-tight">
+    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[62px] font-extrabold leading-[1.15] tracking-tight">
       Find The Best AI For
       <br />
       <span
-        className="inline-block underline decoration-gold decoration-[3px] underline-offset-[6px] min-w-[280px] transition-all duration-300"
+        className="inline-block underline decoration-gold decoration-[3px] underline-offset-[6px] min-w-[160px] sm:min-w-[200px] md:min-w-[280px] transition-all duration-300"
         style={{
           opacity: isAnimating ? 0 : 1,
           transform: isAnimating ? 'translateY(10px)' : 'translateY(0)',
